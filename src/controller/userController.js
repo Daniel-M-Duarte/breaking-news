@@ -9,7 +9,7 @@ const create = async (req, res) => {
     const { name, username, email, password, avatar, background } = req.body;
 
     if (!name || !username || !email || !password || !avatar || !background) {
-      res.status(400).send({ message: "Submit all field for registration" });
+      return res.status(400).send({ message: "Submit all field for registration" });
     }
 
     const user = await createUserService(req.body);
@@ -30,7 +30,7 @@ const create = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message });
   }
 };
 
@@ -52,9 +52,9 @@ const findById = async (req, res) => {
   try {
     const user = req.user;
 
-    res.status(200).send(user);
+    return res.status(200).send(user);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message });
   }
 };
 
@@ -76,7 +76,7 @@ const updateUser = async (req, res) => {
 
     res.status(200).send({ message: "User update successfully" });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message });
   }
 };
 

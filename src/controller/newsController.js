@@ -14,9 +14,9 @@ const create = async (req, res) => {
       banner,
       user: { _id: "662c5889db1e1717ea1c0e39" },
     });
-    res.status(201).send("created");
+    return res.status(201).send("created");
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
@@ -30,7 +30,7 @@ const findAll = async (_req, res) => {
 
     res.status(200).send(news);
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 

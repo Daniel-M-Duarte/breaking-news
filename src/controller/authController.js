@@ -9,18 +9,18 @@ const login = async (req, res) => {
     const user = await findUser(email);
     
     if (!user) {
-      res.status(400).send({ message: "Password or email invalid!" });
+      return res.status(400).send({ message: "Password or email invalid!" });
     }
 
     const matchPassword = await bcryptjs.compare(password, user.password);
     if (!matchPassword) {
-      res.status(400).send({ message: "Password or email invalid!" });
+      return res.status(400).send({ message: "Password or email invalid!" });
     }
 
     const token = generateToken(user._id);
     res.status(200).send({ token });
   } catch (error) {
-    res.status(500).send(error.message);
+    return res.status(500).send(error.message);
   }
 };
 

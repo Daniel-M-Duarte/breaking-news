@@ -5,7 +5,7 @@ const validId = (req, res, next) => {
   const id = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).send({ message: "Invalid ID" });
+    return res.status(400).send({ message: "Invalid ID" });
   }
 
   next();
@@ -17,7 +17,7 @@ const validUser = async (req, res, next) => {
   const user = await findByIdService(id);
 
   if (!user) {
-    res.status(400).send({ message: "User not found" });
+    return res.status(400).send({ message: "User not found" });
   }
 
   req.id = id;
