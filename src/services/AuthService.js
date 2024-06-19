@@ -2,8 +2,7 @@ import User from "../models/database/User.js";
 import jwt from "jsonwebtoken";
 
 const findUser = (email) => {
-  const response = User.findOne({ email }).select("+password");
-  return response;
+  return User.findOne({ email }).select("+password");
 };
 
 const generateToken = (id) => {
